@@ -64,11 +64,17 @@ fun NavGraphBuilder.profileNavGraph(
         }
 
         composable<ProfileRoute.Faq> {
-            SimpleWebScreen(url = FAQ_URL)
+            SimpleWebScreen(
+                url = FAQ_URL,
+                onClickBack = onClickBack,
+            )
         }
 
         composable<ProfileRoute.Privacy> {
-            SimpleWebScreen(url = PRIVACY_URL)
+            SimpleWebScreen(
+                url = PRIVACY_URL,
+                onClickBack = onClickBack,
+            )
         }
     }
 }
