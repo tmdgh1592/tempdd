@@ -8,8 +8,11 @@ import androidx.compose.foundation.layout.absoluteOffset
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -25,12 +28,14 @@ import org.jetbrains.compose.resources.stringResource
 import whatcampus.composeapp.generated.resources.Res
 import whatcampus.composeapp.generated.resources.app_name
 import whatcampus.composeapp.generated.resources.img_logo
+import whatcampus.composeapp.generated.resources.university_title
 
 @Composable
 fun SimpleWebScreen(
     modifier: Modifier = Modifier,
     url: String,
-    topBar: @Composable () -> Unit = { DefaultTopAppBar() },
+    onClickBack: () -> Unit,
+    topBar: @Composable () -> Unit = { DefaultTopAppBar(onClickBack = onClickBack) },
 ) {
     Scaffold(
         modifier = modifier
@@ -48,6 +53,7 @@ fun SimpleWebScreen(
 @Composable
 private fun DefaultTopAppBar(
     modifier: Modifier = Modifier,
+    onClickBack: () -> Unit,
 ) {
     TopAppBar(
         modifier = modifier,
@@ -70,6 +76,15 @@ private fun DefaultTopAppBar(
                     style = WhatcamTheme.typography.titleLargeB,
                     color = Graphite,
                     modifier = Modifier.absoluteOffset { IntOffset(x = 0, y = -8) },
+                )
+            }
+        },
+        navigationIcon = {
+            IconButton(onClick = onClickBack) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = stringResource(Res.string.university_title),
+                    tint = Graphite,
                 )
             }
         },
